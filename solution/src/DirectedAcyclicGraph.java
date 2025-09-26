@@ -16,24 +16,22 @@ public class DirectedAcyclicGraph {
         if(vertex==null)
             throw new IllegalArgumentException("vertex cannot be null");
 
-        vmap.put(vertex.getId(), vertex);
+        Long vid = vertex.getId();
+        vmap.put(vid, vertex);
 
-        if(checkCyclicPattern()){
-            vmap.remove(vertex.getId());
-            throw new IllegalArgumentException("Cyclic pattern detected; Specified vertex cannot be added." + vertex);
+        if(checkCyclicPattern(vid)){
+            vmap.remove(vid);
+            throw new IllegalArgumentException("Cyclic pattern detected; Specified vertex cannot be added i.e. " + vertex);
         }
 
     }
 
-    private boolean checkCyclicPattern(){
-        Iterator<Long> iter = vmap.keySet().iterator();
+    private boolean checkCyclicPattern(Long start){
 
-        while(iter.hasNext()){
-            List<List<Long>> paths = getAllPaths(iter.next());
-            for(List<Long> path : paths){
-                if(checkRepeated(path))
-                    return true;
-            }
+        List<List<Long>> paths = getAllPaths(start);
+        for(List<Long> path : paths){
+            if(checkRepeated(path))
+                return true;
         }
 
         return false;

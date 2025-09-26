@@ -72,13 +72,13 @@ public class Main {
 
     private static void testCase4(){
         System.out.println("TEST CASE 4:");
-        explorePath(30L);
+        explorePath(9L);
     }
 
 
     private static void testCase5(){
         System.out.println("TEST CASE 5:");
-        explorePath(9L);
+        explorePath(11L);
     }
 
     private static void testCase6(){
@@ -96,7 +96,7 @@ public class Main {
         System.out.println("Data validation -- newly added vertex introducing cycling data pattern");
 
         try {
-            graph.addOrUpdateVertex(Vertex.instance(17L, new Long[]{8L}));
+            graph.addOrUpdateVertex(Vertex.instance(16L, new Long[]{8L}));
         }catch(Exception e){
             e.printStackTrace();
         }
